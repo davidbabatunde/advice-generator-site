@@ -1,24 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import divider from "./images/pattern-divider-mobile.svg";
+import dice from "./images/icon-dice.svg";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 function App() {
+  const getData = async () => {
+    await axios("	https://api.adviceslip.com/advice").then((response) =>
+      setData(response.data.slip)
+    );
+  };
+
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    getData();
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <section>
+      <article>
+        <h1>ADVICE #{data ? data.id : null}</h1>
+        <q>{data ? data.advice : <h1>loading...</h1>}</q>
+        <img src={divider} alt="divider" />
+      </article>
+      <img id="dice" src={dice} onClick={getData} alt="dice" />
+    </section>
   );
 }
 

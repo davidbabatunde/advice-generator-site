@@ -9,7 +9,7 @@
 :root {
   font-family: "Manrope", sans-serif;
   --green: hsl(150, 100%, 66%);
-  --section-height: max(375px, 60vw);
+  --section-height: min(350px, 70vw);
 }
 
 body {
@@ -25,14 +25,15 @@ body {
 section {
   position: relative;
   height: var(--section-height);
+  width: min(90vw, 550px);
   background-color: hsl(217, 19%, 24%);
+  border-radius: 1rem;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
 }
 
 article {
-  width: 90vw;
   padding: 2rem 1rem;
   display: flex;
   flex-direction: column;
